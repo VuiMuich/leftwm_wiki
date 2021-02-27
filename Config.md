@@ -93,7 +93,7 @@ modifier = []
 key = "XF86XK_AudioPlay"
 ```
 
-**Note: even if blank, a modifier must be present! Use `modifier= []` for no modifier**
+**Note: even if blank, a modifier field must be present! Use `modifier = []` for no modifier**
 
 # Keybind Commands
 
