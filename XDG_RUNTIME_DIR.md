@@ -1,7 +1,10 @@
-`$XDG_RUNTIME_DIR` is the standard directory for a user's runtime files.<br>
 LeftWM requires that `$XDG_RUNTIME_DIR` is set in the environment as it uses this directory.
 
-To set it:
+`$XDG_RUNTIME_DIR` is the standard directory for a user's runtime files.<br>
+Most users will more than likely not need this page as they use systemd or elogind.<br>
+However, some people (myself included) don't want that software anywhere near their machines.
+
+So to get around that, you can set it yourself:
 
 ```bash
 export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
