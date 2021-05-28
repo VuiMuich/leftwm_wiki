@@ -19,6 +19,7 @@
 - [Layouts](#layouts)
 - [Tags](#tags)
 - [Workspaces](#workspaces)
+- [Scratchpads](#scratchpads)
 - [Keybind](#keybind)
 - [Keybind Commands](#keybind-commands)
   - [Execute](#execute)
@@ -47,6 +48,7 @@
   - [DecreaseMainWidth](#decreasemainwidth)
   - [SetMarginMultiplier](#setmarginmultiplier)
   - [ToggleFullScreen](#togglefullscreen)
+  - [ToggleScratchPad](#togglescratchpad)
 
 # Modkey
 
@@ -84,10 +86,12 @@ These encompass 4 different patterns:
 4. Event Focus. Focuses when requested by the window/new windows.
 
 Default:
+
 ```toml
 focus_behaviour = "Sloppy" # Can be Sloppy, ClickTo, or Driven
 focus_new_windows = true
 ```
+**Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
 
 # Layouts
 
@@ -153,6 +157,20 @@ x = 1720
 height = 1440
 width = 1720
 ```
+
+# Scratchpads
+
+A scratchpad is a window which you can call to any tag and hide it when not needed. These windows can be any application which can be run from a terminal. To call a scratchpad you will require a keybind for [ToggleScratchPad](#togglescratchpad).
+
+Example:
+
+```toml
+# Create a scratchpad for alacritty
+[[scratchpad]]
+name = "Alacritty" # This is the name which is referenced when calling (case-sensitive)
+value = "alacritty" # The command to load the application if it isn't started
+```
+**Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
 
 # Keybind
 
@@ -536,4 +554,20 @@ command = "ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
 ```
+**Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
+
+## ToggleScratchPad
+
+Toggles the specified scratchpad.
+
+Example:
+
+```toml
+[[keybind]]
+command = "ToggleScratchPad"
+value = "Alacritty" # Name set for the scratchpad
+modifier = ["modkey"]
+key = "p"
+```
+**Note: This command requires a value field to be specified**.
 **Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
