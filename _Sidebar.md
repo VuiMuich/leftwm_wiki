@@ -3,7 +3,7 @@
 ## [External Commands](External-Commands)
 ## Themes
 [Overview](Themes)\
-[Customizing with 'liquid'](Customizing-Themes)\
+[Customizing with 'liquid'](Customizing-Themes-with-%60liquid%60-templates)\
 [Sharing](Sharing-Themes)
 ## Contributing
 [Guidelines](https://github.com/leftwm/leftwm/blob/master/CONTRIBUTING.md)\
