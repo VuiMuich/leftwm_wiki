@@ -526,7 +526,7 @@ key = "x"
 
 ## SetMarginMultiplier
 
-Decreases the width of the currently focused window.
+Set the multiplier applied to the configured margin value.
 
 Example:
 
