@@ -5,7 +5,7 @@ Where THEME is the theme you want to configure, you can use 'current' if you are
 
 ## Terms
 
-- _Default_ refers to the original `config.toml` specified when LeftWM first runs.
+- _Default_ refers to the original `theme.toml` specified when LeftWM first runs.
 - _Example_ refers to a snippet that is not in the original `config.toml` but can be added or modified for additional features.
 
 # Table of contents
