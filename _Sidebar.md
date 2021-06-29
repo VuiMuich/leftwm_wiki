@@ -3,6 +3,7 @@
 ## [External Commands](External-Commands)
 ## Themes
 [Overview](Themes)\
+[Config](Theme-Config)\
 [Customizing with 'liquid'](Customizing-Themes-with-%60liquid%60-templates)\
 [Sharing](Sharing-Themes)
 ## Contributing
