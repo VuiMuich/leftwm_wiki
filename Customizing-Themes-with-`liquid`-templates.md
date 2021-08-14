@@ -81,21 +81,6 @@ There are two ways to use `liquid-syntax` with `leftwm-state`, inline literal st
 
 *Note: Since all theme-related processes are child-processes of the `up` script they usually can use `$SCRIPTPATH` to set the path for theme-specific scripts.*
 
-If you want to use more complex templates that make use of partial templates, "snippets" in the liquid vocabulary, you need to put the main template file in a `templates` directory and the partial template files in a `snippets` directory. All snippets should be prepended by an underscore in the filename.
-```
-your_theme/
-          |_ templates/
-          |          |_ main_template.liquid
-          |
-          |_ snippets/
-                     |_ _partial.liquid
-```
-Your main_template would use the partial like so:
-```
-{% assign partial = 'partial' %}
-{{ partial }}
-```
-
 ## Polybar
 
 Let have a look at the output with a template applied with the command: `leftwm-state -w 0 -t <leftwm-config-dir>/basic_polybar/template_dev.liquid -n -q`
