@@ -68,18 +68,33 @@ Here is a raw output example of `leftwm-state -q` (manually added line breaks fo
 ## Example use
 
 We can use the `liquid` templating language with this structure to generate inline code for the configuration languages of status bars or shell scripts or provide any of the above with specific values.
-In the following examples we will focus on `Polybar`, `Lemonbar` and `EWW` as these apear to be quite popular and resemble different approaches on handling templates. Other status bars like `xmobar`, `cnx`, `yuzubar` etc. should basically all work in a similar way.
+In the following examples we will focus on `Polybar`, `Lemonbar` and `EWW` as these appear to be quite popular and resemble different approaches on handling templates. Other status bars like `xmobar`, `cnx`, `yuzubar` etc. should basically all work in a similar way.
 
 There are two ways to use `liquid-syntax` with `leftwm-state`, inline literal strings or template files:
 1. to use `leftwm-state` with the inline literal string you can use the `-s` command switch:
    ```sh
-   leftwm-state -w 0 -s {{ worspace.layout }} # the switch '-w 0' tells leftwm-state to return values for workspace[0]
+   leftwm-state -w 0 -s {{ workspace.layout }} # the switch '-w 0' tells leftwm-state to return values for workspace[0]
    ```
-   This is typically most helpfull when you want to get only a single return value, like the current layout as in the example, or the name of a specific tag.similar, but some logic is possible as well.
+   This is typically most helpful when you want to get only a single return value, like the current layout as in the example, or the name of a specific tag.similar, but some logic is possible as well.
 2. but for bigger templates with a bunch of styling and logic a dedicated `.liquid` template file might be the better fit.
-   To make use of this, use the command switch `-t`, like in the playbar example below.
+   To make use of this, use the command switch `-t`, like in the polybar example below.
 
 *Note: Since all theme-related processes are child-processes of the `up` script they usually can use `$SCRIPTPATH` to set the path for theme-specific scripts.*
+
+If you want to use more complex templates that make use of partial templates, "snippets" in the liquid vocabulary, you need to put the main template file in a `templates` directory and the partial template files in a `snippets` directory. All snippets should be prepended by an underscore in the filename.
+```
+your_theme/
+          |_ templates/
+          |          |_ main_template.liquid
+          |
+          |_ snippets/
+                     |_ _partial.liquid
+```
+Your main_template would use the partial like so:
+```
+{% assign partial = 'partial' %}
+{{ partial }}
+```
 
 ## Polybar
 
@@ -97,23 +112,23 @@ leftwm-state /home/vuimuich/.config/leftwm/themes/current
 %{F#90A4AE}  3  %{F-}
 %{A}
 ```
-*Note: `$SCRIPTPATH/change_to_tag` here is an inline literal to exectue the `change_to_tag` shell script when clicking on the tag in polybar*.
+*Note: `$SCRIPTPATH/change_to_tag` here is an inline literal to execute the `change_to_tag` shell script when clicking on the tag in polybar*.
 
-The other big part of the output is polybar formatting tags. They are described in gread detail [in the polybar wiki](https://github.com/polybar/polybar/wiki/Formatting#format-tags)
+The other big part of the output is polybar formatting tags. They are described in great detail [in the polybar wiki](https://github.com/polybar/polybar/wiki/Formatting#format-tags)
 
 *Note: With polybar it can happen in a few situations that you will see an Error-Message instead of your tags.*
-     *This usually happens when `leftwm-state` is slower then polybar durin gstartup, or fails to deliver proper output as result of a crashed `leftwm-worker`*
+     *This usually happens when `leftwm-state` is slower then polybar during startup, or fails to deliver proper output as result of a crashed `leftwm-worker`*
      *This is a known issue (#207 and #275).*
 
 
 ## EWW
 
-*Note: Currently `EWW` is in the process of migrating away from `XML` as its config language, so please be aware that the following example is expeted to break in the future. Please keep track of their migration process on their (github)[https://github.com/elkowar/eww]. We will try to update this section as soon as reasonable.*
+*Note: Currently `EWW` is in the process of migrating away from `XML` as its config language, so please be aware that the following example is expected to break in the future. Please keep track of their migration process on their (github)[https://github.com/elkowar/eww]. We will try to update this section as soon as reasonable.*
 
-With `eww` we run the command/script from within their configuration file just as polybar does, but their configuration (at least as long as they are using `XML`) might have some pitfalls prepared for you. Therefore we will go into settng up a template for `eww` in a bit more detail.
+With `eww` we run the command/script from within their configuration file just as polybar does, but their configuration (at least as long as they are using `XML`) might have some pitfalls prepared for you. Therefore we will go into setting up a template for `eww` in a bit more detail.
 We use the example bar of `eww` as shipped with their repository, so you'll find just a bunch of snippets to add to their `eww.xml`
 
-This following is the complete `template.liquid` of the `baseic_eww` example theme: 
+This following is the complete `template.liquid` of the `basic_eww` example theme: 
 ```liquid
 {% assign mine_open = '<button class="ws-button-mine" onclick="wmctrl -s ' %}
 {% assign visible_open = '<button class="ws-button-visible" onclick="wmctrl -s ' %}
@@ -180,7 +195,7 @@ As the `script-var` calls this script without specifying an `interval` eww will 
 For demonstration purpose in the `workspace-window` variable we use the `-q` switch so we get only a single output of `leftwm-state` and update with an interval of 5s. In reallity of course grabbing the tail here as well would make much more sense of course.
 
 ## Lemonbar
-Lemonbar handles things a bit differently, as it doesn't execute the `leftwm-state` command itself, but starts an instance for each workspace in the `up` script and pipes through the standad output to `lemonbar`.
+Lemonbar handles things a bit differently, as it doesn't execute the `leftwm-state` command itself, but starts an instance for each workspace in the `up` script and pipes through the standard output to `lemonbar`.
 The formatting is quite simple and well described in `man lemonbar`.
 
 ## `sizes.liquid`
@@ -188,4 +203,4 @@ This also a very common template in leftwm themes has basically the purpose of g
 It generates the size properties for bars based on the workspace properties configured in `config.toml` (usually workspace width and starting coordinates) and explicitly set values (usually bar height).
 
 ---
-For furhter information about `liquid` syntax you can find a comprehensive documentation on https://github.com/Shopify/liquid/wiki/Liquid-for-Designers.
+For further information about `liquid` syntax you can find a comprehensive documentation on https://github.com/Shopify/liquid/wiki/Liquid-for-Designers.
