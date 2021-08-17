@@ -83,7 +83,7 @@ There are two ways to use `liquid-syntax` with `leftwm-state`, inline literal st
 
 ## Polybar
 
-Let have a look at the output with a template applied with the command: `leftwm-state -w 0 -t <leftwm-config-dir>/basic_polybar/template_dev.liquid -n -q`
+Let’s have a look at the output with a template applied with the command: `leftwm-state -w 0 -t <leftwm-config-dir>/basic_polybar/template_dev.liquid -n -q`
 ```polybar
 %{c}
 leftwm-state /home/vuimuich/.config/leftwm/themes/current
@@ -108,12 +108,12 @@ The other big part of the output is polybar formatting tags. They are described 
 
 ## EWW
 
-*Note: Currently `EWW` is in the process of migrating away from `XML` as its config language, so please be aware that the following example is expected to break in the future. Please keep track of their migration process on their (github)[https://github.com/elkowar/eww]. We will try to update this section as soon as reasonable.*
+*Note: Currently `EWW` is in the process of migrating away from `XML` as its config language, so please be aware that the following example is expected to break in the future. Please keep track of their migration process on [their github](https://github.com/elkowar/eww). We will try to update this section as soon as reasonable.*
 
 With `eww` we run the command/script from within their configuration file just as polybar does, but their configuration (at least as long as they are using `XML`) might have some pitfalls prepared for you. Therefore we will go into setting up a template for `eww` in a bit more detail.
 We use the example bar of `eww` as shipped with their repository, so you'll find just a bunch of snippets to add to their `eww.xml`
 
-This following is the complete `template.liquid` of the `basic_eww` example theme: 
+Following is the complete `template.liquid` of the `basic_eww` example theme: 
 ```liquid
 {% assign mine_open = '<button class="ws-button-mine" onclick="wmctrl -s ' %}
 {% assign visible_open = '<button class="ws-button-visible" onclick="wmctrl -s ' %}
@@ -161,7 +161,7 @@ And these snippets go into your `eww.xml`:
     ...
   </definitions>
 ```
-It is important to know at this point that the `<literal>` tag can only take one element in its `content` parameter. If you need to use multiple element you need to put a `<box>` around them, which in this case is already done by the `template.liquid`.
+It is important to know at this point, that the `<literal>` tag can only take one element in its `content` parameter. If you need to use multiple element you need to put a `<box>` around them, which in this case is already done by the `template.liquid`.
 ```xml
   <variables>
     ...
