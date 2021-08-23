@@ -3,6 +3,8 @@
  _All code snippets in this section refer to the file `~/.config/leftwm/config.toml`_  
  All entries require a modifier, even if blank: `modifier = []`
 
+***Important: You will need to reload (recommended SoftReload, as it tries to preserve the WM state as far as possible) in order to apply changes to `config.toml`.***
+
 ## Terms
 
 - _Default_ refers to the original `config.toml` specified when LeftWM first runs.  
