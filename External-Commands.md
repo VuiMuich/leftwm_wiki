@@ -34,7 +34,7 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | FloaingToTile | | pushes currently focused floating window back to tiling mode |
 | CloseWindow | | closes currently focused window |
 | FocusWindowDown | | |
-| FocusWindowU | | |
+| FocusWindowUp | | |
 | FocusNextTag | | |
 | FocusPreviousTag | | |
 | FocusWorkspaceNext | | |
