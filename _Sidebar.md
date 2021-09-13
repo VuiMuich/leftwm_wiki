@@ -1,5 +1,16 @@
 ## [Home](Home)
 ## [Config](Config)
+[Configuring LeftWM](../Config#configuring-leftwm)\
+[Modkey](../Config#modkey)\
+[Mousekey](../Config#mousekey)\
+[Tag Behaviour](../Config#tag-behaviour)\
+[Focus Behaviour](../Config#focus-behaviour)\
+[Layouts](../Config#layouts)\
+[Tags](../Config#tags)\
+[Workspaces](../Config#workspaces)\
+[Scratchpads](../Config#scratchpads)\
+[Keybind](../Config#keybind)\
+[Keybind-Commands](../Config#keybind-commands)
 ## [External Commands](External-Commands)
 ## Themes
 [Overview](Themes)\
