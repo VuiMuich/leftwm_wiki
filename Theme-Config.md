@@ -15,6 +15,7 @@ Where THEME is the theme you want to configure, you can use 'current' if you are
 - [Gutters](#gutters)
 - [Border Colors](#border-colors)
 - [On New Window Command](#on-new-window-command)
+- [Minimal Requirements](#minimal-requirements)
 
 # Border Width
 
@@ -75,3 +76,7 @@ focused_border_color = '#FF0000'
 This is a command to run every time a new window is opened.
 
 Example : ```on_new_window = 'echo Hello World'```
+
+# Minimal Requirements
+In order to be parsable a theme at minimum must contain the fields: 
+`default_border_color`, `floating_border_color`, `focused_border_color`, `border_width` and `margin`
