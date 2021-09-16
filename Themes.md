@@ -15,6 +15,27 @@ We are looking to expand the list of available themes for an upcoming release. I
 
 A theme has only two requirements. An “up” and a “down” executable/script. They can be written in whatever makes you happy. The up script you guessed it starts up all the things that make your script unique and awesome. The down script restores the environment to an un-themes state. A theme should be self contained if possible so that it can be shared and doesn’t interfere with other themes. For example when booting an application with a config file, put the config file in the theme folder instead of ~/.config. This way other themes can use the same application 
 
+**Important note:** *as a convention unloading a theme should happen with a `down` script, which undos all of the things the upscript launches and that is symlinked or copied to `/tmp/leftwm-down-theme` with the following snippet:*
+```bash
+export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+# Down the last running theme
+if [ -f "/tmp/leftwm-theme-down" ]; then
+    /tmp/leftwm-theme-down
+    rm /tmp/leftwm-theme-down
+fi
+ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
+```
+Minimal `down` script:
+```bash
+#!/usr/bin/env bash
+
+leftwm command "UnloadTheme"
+
+# add kill commands for anything you launched in the 'up' script e.g.:
+# pkill polybar
+# pkill picom
+```
 
 # Setup / selection of theme
 
