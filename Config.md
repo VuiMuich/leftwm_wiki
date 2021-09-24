@@ -20,6 +20,7 @@
 - [Focus Behaviour](#focus-behaviour)
 - [Layouts](#layouts)
 - [Tags](#tags)
+- [Max Window Width](#max-window-width)
 - [Workspaces](#workspaces)
 - [Scratchpads](#scratchpads)
 - [Keybind](#keybind)
@@ -137,6 +138,82 @@ Tags are the names of the virtual desktops were windows live. In other window ma
 Default: `tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]`
 
 Example: `tags = ["Browser ♖", "Term ♗", "Shell ♔", "Code ♕"]`
+
+# Max Window Width
+> This feature was introduced in PR [#482](https://github.com/leftwm/leftwm/pull/482)
+
+You can configure a `max_window_width` to limit the width of the tiled windows (or rather, the width of columns in a layout). This feature comes in handy when working on ultra-wide monitors where you don't want a single window to take the complete workspace width.
+
+**Demonstration**
+
+Without `max_window_width`
+```text
++-----------------------------------------------+
+|+---------------------------------------------+|
+||                                             ||
+||                     1                       ||  [49' monitor]
+||                                             ||
+|+---------------------------------------------+|
++-----------------------------------------------+
+```
+```text
++-----------------------------------------------+
+|+----------------------+----------------------+|
+||                      |                      ||
+||          1           |          2           ||  [49' monitor]
+||                      |                      ||
+|+----------------------+----------------------+|
++-----------------------------------------------+
+```
+
+With `max_window_width`
+```text
++-----------------------------------------------+
+|               +---------------+               |
+|               |               |               |
+|               |       1       |               |  [49' monitor]
+|               |               |               |
+|               +---------------+               |
++-----------------------------------------------+
+
+                ^^^^^^^^^^^^^^^^^
+                MAX_WINDOW_WIDTH
+```
+
+```text
++-----------------------------------------------+
+|        +--------------+--------------+        |
+|        |              |              |        |
+|        |       1      |       2      |        |  [49' monitor]
+|        |              |              |        |
+|        +--------------+--------------+        |
++-----------------------------------------------+
+
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              MAX_WINDOW_WIDTH * 2
+```
+
+This setting can be configured either globally, per workspace, or both. The workspace specific configuration always takes precedence over the global setting.
+
+Values: An `int` value for absolute pixels (`2200` means `2200px`), or a decimal value for fractions (`0.4` means `40%`).\
+Default: Has no default value. No value means no width limit.
+
+Example:
+
+```toml
+# global configuration: 40%
+max_window_width = 0.4
+
+[[workspaces]]
+y = 0
+x = 0
+height = 1440
+width = 2560
+# workspace specific configuration: 1200px
+max_window_width = 1200
+```
+
+**Note: This is only available in LeftWM >=0.2.9. It is currently only available through aur/leftwm-git or building from source.**
 
 # Workspaces
 
