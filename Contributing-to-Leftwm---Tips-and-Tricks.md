@@ -43,3 +43,9 @@ Example usage:
 # You can pass anything that would go to git add -A 
 checkleft 'src/ Cargo.toml Cargo.lock' 'Commit message'
 ```
+
+Note for extended clippy lints use:
+```
+cargo clippy -- -W clippy::pedantic -A clippy::must_use_candidate -A clippy::cast_precision_loss -A clippy::cast_possible_truncation -A clippy::cast_possible_wrap -A clippy::cast_sign_loss -A clippy::mut_mut
+
+```
