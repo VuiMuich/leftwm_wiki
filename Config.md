@@ -30,6 +30,8 @@
   - [SoftReload](#softreload)
   - [CloseWindow](#closewindow)
   - [MoveToLastWorkspace](#movetolastworkspace)
+  - [MoveWindowToNextWorkspace](#movewindowtonextworkspace)
+  - [MoveWindowToPreviousWorkspace](#movewindowtopreviousworkspace)
   - [FloatingToTile](#floatingtotile)
   - [MoveWindowUp](#movewindowup)
   - [MoveWindowDown](#movewindowdown)
@@ -248,6 +250,12 @@ Example:
 [[scratchpad]]
 name = "Alacritty" # This is the name which is referenced when calling (case-sensitive)
 value = "alacritty" # The command to load the application if it isn't started
+# x, y, width, height are in pixels when an integer is inputted or a percentage when a float is inputted.
+# These values are relative to the size of the workspace, and will be restricted depending on the workspace size.
+x = 860
+y = 390
+height = 300
+width = 200
 ```
 **Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
 
@@ -335,6 +343,32 @@ Default:
 command = "MoveToLastWorkspace"
 modifier = ["modkey", "Shift"]
 key = "w"
+```
+
+## MoveWindowToNextWorkspace
+
+Takes the window that is currently focused and moves it to the next workspace.
+
+Example:
+
+```toml
+[[keybind]]
+command = "MoveWindowToNextWorkspace"
+modifier = ["modkey", "Shift"]
+key = "Right"
+```
+
+## MoveWindowToPreviousWorkspace
+
+Takes the window that is currently focused and moves it to the previous workspace.
+
+Example:
+
+```toml
+[[keybind]]
+command = "MoveWindowToPreviousWorkspace"
+modifier = ["modkey", "Shift"]
+key = "Left"
 ```
 
 ## FloatingToTile
