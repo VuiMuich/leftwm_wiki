@@ -28,6 +28,8 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | SendWorkspaceToTag | `workspace index` `tag_index` | both indices as integer, focuses `Tag` on `Workspace` |
 | SendWindowToTag | `tag_index` | index as integer, sends currently focused window to `Tag` |
 | MoveWindowToLastWorkspace | | moves currently focused window to last used workspace |
+| MoveWindowToNextWorkspace | | moves currently focused window to next workspace |
+| MoveWindowToPreviousWorkspace | | moves currently focused window to previous workspace |
 | MoveWindowDown | | moves currently focused window down once |
 | MoveWindowUp | | moves currently focused window up once |
 | MoveWindowTop | | moves currently focused window to the top |
