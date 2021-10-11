@@ -19,6 +19,7 @@
 - [Tag Behaviour](#tag-behaviour)
 - [Focus Behaviour](#focus-behaviour)
 - [Layouts](#layouts)
+- [Layout Mode](#layout-mode)
 - [Tags](#tags)
 - [Max Window Width](#max-window-width)
 - [Workspaces](#workspaces)
@@ -132,6 +133,15 @@ layouts = [
 ]
 ```
 
+# Layout Mode
+
+Leftwm now has 2 layout modes, Workspace and Tag. These determine how layouts are remembered. When in Workspace mode, layouts will be remembered per workspace. When in Tag mode, layouts are remembered per tag.
+
+Default:
+
+```toml
+layout_mode = "Workspace" # Can be Workspace or Tag
+```
 
 # Tags
 
