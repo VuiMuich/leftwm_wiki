@@ -9,6 +9,9 @@ You can switch back and forth between a different xorg session that is running s
 4) boot LeftWM
 Now you can switch back and forth between LeftWM and gnome
 
+## Using Xephyr instead of switching tty
+if you prefer not to switch tty you can use a tool called Xephyr. This tool allows you to run an embedded X session, aka a wm in a window. To use it first run `Xephyr -br -ac -noreset -screen 1920x1200 :1`. replace the value after `-screen` with the resolution you want the session to run in, if you are using a resolution bigger then the window it is contained it it will crop of anything that doesnt fit. If you want it to close after you exit out of the window manager running in it, remove the `-noreset`. To run leftwm in this X session run `DISPLAY=:1 leftwm` in a termial. if you changed the `:1` in the `Xephyr` command also replace it in the other command.
+
 ## Environment Functions  
 To make your life easier once your done coding, adding this function
 ```
