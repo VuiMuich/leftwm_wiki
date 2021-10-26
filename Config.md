@@ -394,6 +394,32 @@ modifier = ["modkey", "Shift"]
 key = "t"
 ```
 
+## TileToFloating
+
+Switch the focused window to floating mode when it is tiled
+
+Example:
+
+```toml
+[[keybind]]
+command = "TileToFloating"
+modifier = ["modkey", "Shift"]
+key = "f"
+```
+
+## ToggleFloating
+
+Switch the focused window between floating and tiled mode.
+
+Example:
+
+```toml
+[[keybind]]
+command = "TileToFloating"
+modifier = ["modkey", "Ctrl"]
+key = "f"
+```
+
 ## MoveWindowUp
 
 Re-orders the focused window within the current workspace (moves up in order).
