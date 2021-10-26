@@ -34,6 +34,8 @@
   - [MoveWindowToNextWorkspace](#movewindowtonextworkspace)
   - [MoveWindowToPreviousWorkspace](#movewindowtopreviousworkspace)
   - [FloatingToTile](#floatingtotile)
+  - [TileToFloating](#tiletofloating)
+  - [ToggleFloating](#togglefloating)
   - [MoveWindowUp](#movewindowup)
   - [MoveWindowDown](#movewindowdown)
   - [MoveWindowTop](#movewindowtop)
