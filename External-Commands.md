@@ -34,6 +34,8 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | MoveWindowUp | | moves currently focused window up once |
 | MoveWindowTop | | moves currently focused window to the top |
 | FloatingToTile | | pushes currently focused floating window back to tiling mode |
+| TileToFloating | | Switch currently focused tiled window to floating mode |
+| ToggleFloating | | Switch currently focused window between tiled and floating mode |
 | CloseWindow | | closes currently focused window |
 | FocusWindowDown | | |
 | FocusWindowUp | | |
