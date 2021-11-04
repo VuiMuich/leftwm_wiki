@@ -251,6 +251,14 @@ height = 1440
 width = 1720
 ```
 
+Or with short syntax:
+```toml
+workspaces = [
+    { y = 0, x = 0, height = 1440, width = 1720 },
+    { y = 0, x = 1720, height = 1440, width = 1720 },
+]
+```
+
 # Scratchpads
 
 A scratchpad is a window which you can call to any tag and hide it when not needed. These windows can be any application which can be run from a terminal. To call a scratchpad you will require a keybind for [ToggleScratchPad](#togglescratchpad).
@@ -269,6 +277,13 @@ y = 390
 height = 300
 width = 200
 ```
+
+Or with short syntax:
+```toml
+scratchpad = [
+    { name = "Alacritty", value = "alacritty", x = 860, y = 390, height = 300, width = 200 },
+]
+```
 **Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
 
 # Keybind
@@ -285,7 +300,16 @@ modifier = []
 key = "XF86XK_AudioPlay"
 ```
 
-**Note: even if blank, a modifier must be present! Use `modifier= []` for no modifier**
+You can use the short syntax here as well:
+```toml
+keybind = [
+    { command = "Execute", value = "vlc https://www.youtube.com/watch?v=oHg5SJYRHA0", modifier = [], key = "XF86XK_AudioPlay" },
+    { command = "HardReload", modifier = ["modkey", "Shift"], key = "b"},
+    { command = "CloseWindow", modifier = ["modkey", "Shift"], key = "q" },
+]
+```
+
+**Note: even if blank, a modifier must be present! Use `modifier = []` for no modifier**
 
 # Keybind Commands
 
