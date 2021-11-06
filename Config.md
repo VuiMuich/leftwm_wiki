@@ -99,7 +99,7 @@ Default:
 focus_behaviour = "Sloppy" # Can be Sloppy, ClickTo, or Driven
 focus_new_windows = true
 ```
-**Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
+**Note: This is only available in LeftWM >=0.2.8.**
 
 # Layouts
 
@@ -284,7 +284,7 @@ scratchpad = [
     { name = "Alacritty", value = "alacritty", x = 860, y = 390, height = 300, width = 200 },
 ]
 ```
-**Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
+**Note: This is only available in LeftWM >=0.2.8.**
 
 # Keybind
 
@@ -729,7 +729,7 @@ command = "ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
 ```
-**Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
+**Note: This is only available in LeftWM >=0.2.8.**
 
 ## ToggleScratchPad
 
@@ -745,4 +745,4 @@ modifier = ["modkey"]
 key = "p"
 ```
 **Note: This command requires a value field to be specified**.
-**Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
+**Note: This is only available in LeftWM >=0.2.8.**
