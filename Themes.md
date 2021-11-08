@@ -11,11 +11,11 @@ With LeftWM, there are two types of configs:
 We are looking to expand the list of available themes for an upcoming release. If you enjoy making desktops look good please consider sharing by making a pull request on [the community themes repository](https://github.com/leftwm/leftwm-community-themes).
 
 
-# Requirements for a theme
+# Requirements for a theme - `up` and `down` scripts
 
-A theme has only two requirements. An “up” and a “down” executable/script. They can be written in whatever makes you happy. The up script you guessed it starts up all the things that make your script unique and awesome. The down script restores the environment to an un-themes state. A theme should be self contained if possible so that it can be shared and doesn’t interfere with other themes. For example when booting an application with a config file, put the config file in the theme folder instead of ~/.config. This way other themes can use the same application 
+A theme has only two requirements. An `up` and a `down` executable/script. They can be written in whatever makes you happy. The `up` script you guessed it starts up all the things that make your theme unique and awesome. The `down` script restores the environment to an un-themed state. A theme should be self contained if possible so that it can be shared and doesn’t interfere with other themes. For example when booting an application with a config file, put the config file in the theme folder instead of ~/.config. This way other themes can use the same application 
 
-**Important note:** *as a convention unloading a theme should happen with a `down` script, which undos all of the things the upscript launches and that is symlinked or copied to `/tmp/leftwm-down-theme` with the following snippet:*
+**Important note:** *as a convention unloading a theme should happen with a `down` script, which undos all of the things the `up` script had launched and should be symlinked or copied to `/tmp/leftwm-down-theme`. The following snippet is widely used:*
 ```bash
 export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 
@@ -36,6 +36,7 @@ leftwm command "UnloadTheme"
 # pkill polybar
 # pkill picom
 ```
+*Note: for theme agnostic autostart you can use the `~/.config/autostart/` directory or a pair of `up`/`down` scripts in your `~/,config/leftwm/` direcotry.*
 
 # Setup / selection of theme
 
