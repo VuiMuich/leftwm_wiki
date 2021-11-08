@@ -14,6 +14,7 @@
 # Table of contents
 
 - [Configuring LeftWM](#configuring-leftwm)
+- [Autostart](#autostart)
 - [Modkey](#modkey)
 - [Mousekey](#mousekey)
 - [Tag Behaviour](#tag-behaviour)
@@ -57,6 +58,15 @@
   - [SetMarginMultiplier](#setmarginmultiplier)
   - [ToggleFullScreen](#togglefullscreen)
   - [ToggleScratchPad](#togglescratchpad)
+
+# Autostart
+
+Actually not part of `config.toml` but kind of belongs here:
+There is basically three ways to autostart applications with `LeftWM` session login (and restart them when executing `SoftReload`/`HardReload`)
+1. XDG_AUTOSTART: to use this, place a `.desktop` file in `~/.config/autostart` (more info about desktop entries can be found in the [ArchWiki](https://github.com/leftwm/leftwm/wiki/Config/_edit)
+2. `up`/`down` scripts in [the theme](https://github.com/leftwm/leftwm/wiki/Themes#requirements-for-a-theme---up-and-down-scripts)
+3. the same scripts can be placed in `~/.config/leftwm/` in order to be theme agnostic
+*Note: there is no override rules between "theme-scripts" and "config-scripts", as they are agnostic of each other.*
 
 # Modkey
 
