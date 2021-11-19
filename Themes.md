@@ -36,7 +36,7 @@ leftwm command "UnloadTheme"
 # pkill polybar
 # pkill picom
 ```
-*Note: for theme agnostic autostart you can use the `~/.config/autostart/` directory or a pair of `up`/`down` scripts in your `~/,config/leftwm/` direcotry.*
+*Note: for theme agnostic autostart you can use the `~/.config/autostart/` directory or a pair of `up`/`down` scripts in your `~/.config/leftwm/` directory.*
 
 # Setup / selection of theme
 
