@@ -1,6 +1,7 @@
 ## [Home](Home)
 ## [Config](Config)
 [Configuring LeftWM](Config#configuring-leftwm)\
+[Autostart](Config#autostart)\
 [Modkey](Config#modkey)\
 [Mousekey](Config#mousekey)\
 [Tag Behaviour](Config#tag-behaviour)\
