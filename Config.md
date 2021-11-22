@@ -268,6 +268,56 @@ workspaces = [
     { y = 0, x = 1720, height = 1440, width = 1720 },
 ]
 ```
+Some features in your theme can be set for specific workspaces, such as gutters. If you have multiple workspaces defined in your `config.toml` and wish to apply workspace-specific settings, you need to add an ID field to your workspaces definition:
+
+```toml
+[[workspaces]]
+y = 0
+x = 0
+height = 1440
+width = 1720
+id = 0
+
+[[workspaces]]
+y = 0
+x = 1720
+height = 1440
+width = 1720
+id = 1
+```
+
+Or with short syntax:
+```toml
+workspaces = [
+    { y = 0, x = 0, height = 1440, width = 1720, id = 0 },
+    { y = 0, x = 1720, height = 1440, width = 1720, id = 1 },
+]
+```
+
+Note that leftwm will consider a configuration that assigns only some, but not all, workspaces an ID to be invalid. The following would result in logging a warning message and falling back to the default config:
+
+```toml
+[[workspaces]]
+y = 0
+x = 0
+height = 1440
+width = 1720
+
+[[workspaces]]
+y = 0
+x = 1720
+height = 1440
+width = 1720
+id = 1
+```
+
+Or with short syntax:
+```toml
+workspaces = [
+    { y = 0, x = 0, height = 1440, width = 1720 },
+    { y = 0, x = 1720, height = 1440, width = 1720, id = 1 },
+]
+```
 
 # Scratchpads
 
