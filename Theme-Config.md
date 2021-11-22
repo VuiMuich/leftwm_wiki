@@ -64,7 +64,7 @@ side = "Left"
 value = 20
 wsid = 1
 ```
-This assumes your `config.toml` includes a workspace definition with an id of 1.
+This assumes your `config.toml` includes a workspace definition with an id of 1. Also be aware that if you assign an ID for any workspace in your `config.toml`, you must assign an ID to ALL workspaces in the `config.toml`. Otherwise leftwm will fall back to the default theme and log a warning message about your config settings.
 
 **Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
 
