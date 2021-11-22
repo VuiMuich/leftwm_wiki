@@ -44,7 +44,7 @@ workspace_margin = [4, 5, 6] # Expands to [4, 5, 6, 6]
 
 # Gutters
 
-Gutters allow you to set a dedicated area for your dock if LeftWM cannot set this up automatically. Gutters can be set for each side, however if multiple gutters are set for the same side only the first one will be used.
+Gutters allow you to set a dedicated area for your dock if LeftWM cannot set this up automatically. Gutters can be set for each side, however if multiple gutters are set for the same side only the first one will be used. If you have multiple workspaces defined in `config.toml` you can specify a particular workspace on which to apply a specific gutter.
 
 Examples:
 
@@ -57,6 +57,15 @@ value = 20
 side = "Left"
 value = 20
 ```
+The above settings will apply to all workspaces. If you want to only apply the left gutter to a specific workspace use this configuration:
+```
+[[gutter]]
+side = "Left"
+value = 20
+wsid = 1
+```
+This assumes your `config.toml` includes a workspace definition with an id of 1.
+
 **Note: This is only available in LeftWM >=0.2.8. It is currently only available through aur/leftwm-git or building from source.**
 
 # Border Colors
