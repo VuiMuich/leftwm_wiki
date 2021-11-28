@@ -21,11 +21,11 @@
 | Key | Keysyms |
 |-|:-:|
 | & | ampersand |
-| é | Eacute |
+| é | eacute |
 | " | quotedbl |
 | ' | apostrophe |
 | ( | parenleft |
-| è | Egrave |
+| è | egrave |
 | _ | underscore |
-| ç | Ccedillia |
-| à | Agrave |
+| ç | ccedillia |
+| à | agrave |
