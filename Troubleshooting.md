@@ -16,3 +16,16 @@
 | Issue | Description | Solution |
 |-|-|:-:|
 | Leftwm-check works, but I still get a black screen | You may not have XDG_RUNTIME_DIR set. | Install elogind or follow the guide. |
+
+## Azerty mapping
+| Key | Keysyms |
+|-|:-:|
+| & | ampersand |
+| é | Eacute |
+| " | quotedbl |
+| ' | apostrophe |
+| ( | parenleft |
+| è | Egrave |
+| _ | underscore |
+| ç | Ccedillia |
+| à | Agrave |
