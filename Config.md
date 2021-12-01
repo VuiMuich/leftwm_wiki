@@ -337,6 +337,16 @@ y = 390
 height = 300
 width = 200
 ```
+Or with float values:
+```
+[[scratchpad]]
+name = "Alacritty"
+value = "WINIT_X11_SCALE_FACTOR=1 alacritty -o font.size=14"
+x = 0.46
+y = 0.20
+height = 0.80
+width =  0.54
+```
 
 Or with short syntax:
 ```toml
