@@ -338,7 +338,7 @@ height = 300
 width = 200
 ```
 Or with float values:
-```
+```toml
 [[scratchpad]]
 name = "Alacritty"
 value = "WINIT_X11_SCALE_FACTOR=1 alacritty -o font.size=14"
