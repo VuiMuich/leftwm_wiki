@@ -293,7 +293,18 @@ workspaces = [
     { y = 0, x = 1720, height = 1440, width = 1720, id = 1 },
 ]
 ```
+After specifying id in `config.toml`, you can refer to it by wsid in theme.toml like below:
+```toml
+[[gutter]]
+side = "Left" # set a 20 pixel margin on the left side of workspace id 0
+value = 20
+wsid = 0
 
+[[gutter]]
+side = "Right"
+value = 20
+wsid = 0
+```
 Note that leftwm will consider a configuration that assigns only some, but not all, workspaces an ID to be invalid. The following would result in logging a warning message and falling back to the default config:
 
 ```toml
