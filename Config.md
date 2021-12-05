@@ -116,7 +116,7 @@ focus_new_windows = true
 Leftwm supports an ever-growing amount layouts, which define the way that 
 windows are tiled in the workspace.
 
-Default (all layouts, check [this enum](https://github.com/leftwm/leftwm/blob/master/leftwm-core/src/layouts/mod.rs#L21)
+Default (all layouts, check [this enum](https://github.com/leftwm/leftwm/blob/main/leftwm-core/src/layouts/mod.rs#L21)
 for the latest list):
 
 ```toml
@@ -369,7 +369,7 @@ scratchpad = [
 
 # Keybind
 
-All other commands are keybindings. you can think of key bindings as a way of telling LeftWM to do something when a key combination is pressed. There are several types of key bindings. In order for the keybind event to fire, the keys listed in the modifier section should be held down, and the key in the key section should then be pressed. [Here is a list of all keys LeftWM can use as a modifier or a key](https://github.com/leftwm/leftwm/blob/master/leftwm-core/src/utils/xkeysym_lookup.rs#L46).
+All other commands are keybindings. you can think of key bindings as a way of telling LeftWM to do something when a key combination is pressed. There are several types of key bindings. In order for the keybind event to fire, the keys listed in the modifier section should be held down, and the key in the key section should then be pressed. [Here is a list of all keys LeftWM can use as a modifier or a key](https://github.com/leftwm/leftwm/blob/main/leftwm-core/src/utils/xkeysym_lookup.rs#L46).
 
 **Note: As it is a comon pitfall for users of AZERTY keyboards you can find the relevant keysyms fo tag related keybinds [here](https://github.com/leftwm/leftwm/wiki/Troubleshooting#azerty-mapping).**
 
