@@ -39,7 +39,7 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | CloseWindow | | closes currently focused window |
 | FocusWindowDown | | |
 | FocusWindowUp | | |
-| FocusWindowTop | `toggle` | Focus to top (main) window. If `toggle` is true, select the previous window if already on the top window |
+| FocusWindowTop | `toggle` | Focus to top (main) window. If `toggle` is true, select the previous window if already on the top window. Only available in LeftWM >=0.2.11. |
 | FocusNextTag | | |
 | FocusPreviousTag | | |
 | FocusWorkspaceNext | | |
