@@ -611,6 +611,20 @@ modifier = ["modkey"]
 key = "Down"
 ```
 
+## FocusWindowTop
+
+Focuses the top (main) window on the current workspace. If `value` is `true`, it will select the previous window if the top window is already focused
+
+Default:
+
+```toml
+[[keybind]]
+command = "FocusWindowTop"
+modifier = ["modkey"]
+value = false
+key = "m"
+```
+
 ## NextLayout
 
 Changes the workspace to a new layout.
