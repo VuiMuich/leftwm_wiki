@@ -625,6 +625,8 @@ value = false
 key = "m"
 ```
 
+**NOTE: if a value is not provided, it will default to `false`
+
 ## NextLayout
 
 Changes the workspace to a new layout.
