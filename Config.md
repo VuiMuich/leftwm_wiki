@@ -625,7 +625,9 @@ value = false
 key = "m"
 ```
 
-**NOTE: This is only available in LeftWM >=0.2.11. If a value is not provided, it will default to `false`
+**NOTE: This is only available in LeftWM >=0.2.11.**
+
+**NOTE: If a value is not provided, it will default to `false`**
 
 ## NextLayout
 
