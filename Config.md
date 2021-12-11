@@ -43,6 +43,7 @@
   - [MoveToTag](#movetotag)
   - [FocusWindowUp](#focuswindowup)
   - [FocusWindowDown](#focuswindowdown)
+  - [FocusWindowTop](#focuswindowtop)
   - [NextLayout](#nextlayout)
   - [PreviousLayout](#previouslayout)
   - [SetLayout](#setlayout)
