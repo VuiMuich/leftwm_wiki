@@ -525,7 +525,7 @@ Example:
 
 ```toml
 [[keybind]]
-command = "TileToFloating"
+command = "ToggleFloating"
 modifier = ["modkey", "Ctrl"]
 key = "f"
 ```
