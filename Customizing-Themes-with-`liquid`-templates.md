@@ -110,68 +110,56 @@ The other big part of the output is polybar formatting tags. They are described 
 
 ## EWW
 
-*Note: Currently `EWW` is in the process of migrating away from `XML` as its config language, so please be aware that the following example is expected to break in the future. Please keep track of their migration process on [their github](https://github.com/elkowar/eww). We will try to update this section as soon as reasonable.*
-
-With `eww` we run the command/script from within their configuration file just as polybar does, but their configuration (at least as long as they are using `XML`) might have some pitfalls prepared for you. Therefore we will go into setting up a template for `eww` in a bit more detail.
-We use the example bar of `eww` as shipped with their repository, so you'll find just a bunch of snippets to add to their `eww.xml`
+With `eww` we run the command/script from within their configuration file just as polybar does, but their configuration might have some pitfalls prepared for you. Therefore we will go into setting up a template for `eww` in a bit more detail.
+We use the example bar of `eww` as shipped with their repository, so you'll find just a bunch of snippets to add to their `eww.yuck`
 
 Following is the complete `template.liquid` of the `basic_eww` example theme: 
 ```liquid
-{% assign mine_open = '<button class="ws-button-mine" onclick="wmctrl -s ' %}
-{% assign visible_open = '<button class="ws-button-visible" onclick="wmctrl -s ' %}
-{% assign busy_open = '<button class="ws-button-busy" onclick="wmctrl -s ' %}
-{% assign close = '</button>' %}
-{% assign unoccupied = '<button class="ws-button" onclick="wmctrl -s ' %}
-{{'<box orientation="h" class="workspaces" space-evenly="true">'}}
+{% assign mine_open = '(button :class "ws-button-mine" :onclick "wmctrl -s ' %}
+{% assign visible_open = '(button :class "ws-button-visible" :onclick "wmctrl -s ' %}
+{% assign busy_open = '(button :class "ws-button-busy" :onclick "wmctrl -s ' %}
+{% assign unoccupied = '(button :class "ws-button" :onclick "wmctrl -s ' %}
+{{'(box :orientation "h" :class "workspaces" :space-evenly true '}}
 {% for tag in workspace.tags %}
 {% if tag.mine %}
-{{mine_open}}{{tag.index | append: '">'}} {{ tag.name }} {{close}}
+{{mine_open}}{{tag.index | append: '" "'}} {{ tag.name }} {{'")'}}
 {% elsif tag.visible  %}
-{{visible_open}}{{tag.index | append: '">'}} {{ tag.name }} {{close}}
+{{visible_open}}{{tag.index | append: '" "'}} {{ tag.name }} {{'")'}}
 {% elsif tag.busy  %}
-{{busy_open}}{{tag.index | append: '">'}} {{ tag.name }} {{close}}
+{{busy_open}}{{tag.index | append: '" "'}} {{ tag.name }} {{'")'}}
 {% else tag.visible  %}
-{{unoccupied}}{{tag.index | append: '">'}} {{ "·" }} {{close}}
+{{unoccupied}}{{tag.index | append: '" "'}} {{ tag.name }} {{'")'}}
 {% endif %}
 {% endfor %}
-{{"</box>"}}
+{{")"}}
+
 ```
-And these snippets go into your `eww.xml`:
-```xml
-  <definitions>
+And these snippets go into your `eww.yuck`:
+```lisp
     ...
-    <def name="bar">
-      <box orientation="h" hexpand="true">
-        <workspaces />
-        <!-- replace the default 'music' widget with our 'workspace-window' -->
-        <workspace-window />
-        <sidestuff />
-      </box>
-    </def>
-    <def name="workspaces">
-      <box orientation="h" class="workspaces" space-evenly="true" halign="center" valign="center">
-        <literal content='{{wm-tags}}' />
-      </box>
-    </def>
-    </def> <def name="workspace-window">
-      <!-- We use 'class="music"' here to make the snippet instant compatible with the `eww.scss` in the example bar -->
-      <box orientation="h" class="music" halign="start" space-evenly="false">
-        <box></box>
-        <box>{{workspace-window}}</box> 
-      </box>
-    </def>
+    (defwidget bar
+      (box :orientation "h" :hexpand true
+        (workspaces)
+        ; replace the default 'music' widget with our 'workspace-window'
+        (workspace-window)
+        (sidestuff)))
+    (defwidget workspaces
+      (box :orientation "h" :class "workspaces" :space-evenly true :halign "center" :valign "center">
+        (literal :content wm-tags))))
+    (defwidget workspace-window
+      ; We use 'class="music"' here to make the snippet instant compatible with the `eww.scss` in the example bar
+      (box :orientation "h" :class "music" :halign "start" :space-evenly false
+        (box )
+        (box workspace-window)))
     ...
-  </definitions>
 ```
-It is important to know at this point, that the `<literal>` tag can only take one element in its `content` parameter. If you need to use multiple element you need to put a `<box>` around them, which in this case is already done by the `template.liquid`.
-```xml
-  <variables>
+It is important to know at this point, that the `literal` widget can only take one element in its `content` parameter. If you need to use multiple element you need to put a `box` around them, which in this case is already done by the `template.liquid`.
+```lisp
     ...
-    <!-- Script-variables that don't specify an update interval use the tail of the scripts stdout -->
-    <script-var name="wm-tags">~/.config/eww/scripts/getleftwmstate</script-var>
-    <script-var name="workspace-window" interval="5s">leftwm-state -w 0 -q -s "{{ window_title }}"</script-var>
+    ; Script-variables that don't specify an update interval use the tail of the scripts stdout -->
+    (deflisten wm-tags "~/.config/eww/scripts/getleftwmstate")
+    (defpol workspace-window :interval "5s" "leftwm-state -w 0 -q -s '{{ window_title }}'")
     ...
-  </variables>
 ```
 The `getleftwmstate` script is just a one line shell script:
 ```shell
@@ -179,7 +167,7 @@ The `getleftwmstate` script is just a one line shell script:
 leftwm-state -w 0 -t ~/.config/leftwm/themes/current/template.liquid
 ```
 As the `script-var` calls this script without specifying an `interval` eww will grab the tail of the scripts standard output and update the variable every time there is a change.
-For demonstration purpose in the `workspace-window` variable we use the `-q` switch so we get only a single output of `leftwm-state` and update with an interval of 5s. In reallity of course grabbing the tail here as well would make much more sense of course.
+For demonstration purpose in the `workspace-window` variable we use the `-q` switch so we get only a single output of `leftwm-state` and update with an interval of 5s. In reality of course grabbing the tail here as well would make much more sense of course.
 
 ## Lemonbar
 Lemonbar handles things a bit differently, as it doesn't execute the `leftwm-state` command itself, but starts an instance for each workspace in the `up` script and pipes through the standard output to `lemonbar`.
