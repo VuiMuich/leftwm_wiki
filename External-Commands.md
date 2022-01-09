@@ -1,10 +1,11 @@
 This is a brief overview of the available external commands and their possible arguments.
 
-Generally you pass the string of the external command to `$XDG_RUNTIME_DIR/leftwm/command.pipe`.
+You can pass the string of the external command directly to the pipe file. The file will be named "command-{display number}.pipe", where the display number can be found using ```echo $DISPLAY```.
 For example from a shell you could use:
 ```shell
-echo "SetLayout CenterMain" > $XDG_RUNTIME_DIR/leftwm/command.pipe
+echo "SetLayout CenterMain" > $XDG_RUNTIME_DIR/leftwm/command-0.pipe
 ```
+when on display 0.
 If you are on the leftwm 0.2.8 or above, external commands can be passed in using leftwm-command. Commands that contain arguments require quotes.
 For example:
 ```shell
