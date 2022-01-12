@@ -24,6 +24,7 @@
 - [Tags](#tags)
 - [Max Window Width](#max-window-width)
 - [Workspaces](#workspaces)
+- [Window Rules](#window-rules)
 - [Scratchpads](#scratchpads)
 - [Keybind](#keybind)
 - [Keybind Commands](#keybind-commands)
@@ -330,6 +331,40 @@ workspaces = [
     { y = 0, x = 1720, height = 1440, width = 1720, id = 1 },
 ]
 ```
+
+# Window Rules
+
+Window rules allow to define how a window matching some properties should be spawned. As of now, a window can be matched by two properties:
+
+* `window_class`, corresponding to the property `WM_CLASS` of a window in a X server. 
+* `window_title`, corresponding to the `_NET_WM_NAME` or the `WM_NAME` of a window. Both will be inspected if a window rule is defined by `window_title`. This takes precedence over `window_class`, since it is more specific.
+
+The properties of a window can be inspected by launching [xprop](https://www.x.org/releases/X11R7.5/doc/man/man1/xprop.1.html) on a terminal and clicking the desired window.
+
+Example:
+
+```toml
+window_rules = [
+  # windows whose WM_CLASS is "Navigator" will be spawn on tag 2 (by position, 1-indexed)
+  {window_class = "Navigator", spawn_on_tag = 2},
+  # windows whose window title is "Pentablet" will be spawned floating on tag 9
+  {window_title = "Pentablet", spawn_on_tag = 9, spawn_floating = true},
+]
+```
+
+### When should we match the different properties?
+
+Having the flexibility to match by class or title [was found to be important for the user experience](https://github.com/leftwm/leftwm/issues/427#issuecomment-998587861). This decision also follows the previous art in other tiling window managers like [xmonad](https://wiki.haskell.org/Xmonad/General_xmonad.hs_config_tips#ManageHook_examples) or [dwm](https://dwm.suckless.org/patches/switchtotag/). 
+
+While `WM_CLASS` is more robust (the title of a window may be changed during the lifetime of the window), windows with the same class may vary in the desired behavior. For instance, a GUI program like [krita](https://krita.org/) may spawn floating children windows (same `WM_CLASS`, different `WM_TITLE`). Setting a rule for krita like
+
+```toml
+window_rules = [ 
+  {window_class = "krita", spawn_on_tag = 3},
+]
+```
+
+would spawn also the children windows on tag 3 even if the parent krita window was moved to a different tag after launch (which is quite annoying!). In this case, the user most likely wants to use the `window_title` for the parent window or define other rules for the different child windows (`window_title` rules take precedence over `window_class` rules).
 
 # Scratchpads
 
