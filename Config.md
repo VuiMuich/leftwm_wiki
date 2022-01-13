@@ -59,6 +59,7 @@
   - [DecreaseMainWidth](#decreasemainwidth)
   - [SetMarginMultiplier](#setmarginmultiplier)
   - [ToggleFullScreen](#togglefullscreen)
+  - [ToggleSticky](#togglesticky)
   - [ToggleScratchPad](#togglescratchpad)
 
 # Autostart
@@ -401,7 +402,6 @@ scratchpad = [
     { name = "Alacritty", value = "alacritty", x = 860, y = 390, height = 300, width = 200 },
 ]
 ```
-**Note: This is only available in LeftWM >=0.2.8.**
 
 # Keybind
 
@@ -866,7 +866,19 @@ command = "ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
 ```
-**Note: This is only available in LeftWM >=0.2.8.**
+
+## ToggleSticky
+
+Toggles the currently focused window between sticky and not sticky.
+
+Example:
+
+```toml
+[[keybind]]
+command = "ToggleSticky"
+modifier = ["modkey"]
+key = "v"
+```
 
 ## ToggleScratchPad
 
@@ -882,4 +894,3 @@ modifier = ["modkey"]
 key = "p"
 ```
 **Note: This command requires a value field to be specified**.
-**Note: This is only available in LeftWM >=0.2.8.**
