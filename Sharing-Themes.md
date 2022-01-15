@@ -13,7 +13,7 @@ cd leftwm-community-themes
 git submodule add -- https://github.com/USERNAME/NAME_OF_REPO NAME_OF_FOLDER
 ```
 
-5. Modify known.toml adding your theme. Replace USERNAME, NAME_OF_REPO, and NAME_OF_THEME
+5. Modify known.toml adding your theme. Replace USERNAME, NAME_OF_REPO, and NAME_OF_THEME. Delete support_url or replace SUPPORT_URL with a link if you want to provide a support page..
 
 ```
 [[theme]]
@@ -22,6 +22,7 @@ repository = "https://github.com/USERNAME/NAME_OF_REPO/"
 commit = "*"
 version = "0.0.1"
 leftwm_versions = "*"
+support_url = "SUPPORT_URL"
 ```
 
 6. Add, commit, and push the changes
