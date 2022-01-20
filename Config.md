@@ -367,6 +367,8 @@ window_rules = [
 
 would spawn also the children windows on tag 3 even if the parent krita window was moved to a different tag after launch (which is quite annoying!). In this case, the user most likely wants to use the `window_title` for the parent window or define other rules for the different child windows (`window_title` rules take precedence over `window_class` rules).
 
+**Note: This is only available in LeftWM >=0.3.0. It is currently only available through aur/leftwm-git or building from source.**
+
 # Scratchpads
 
 A scratchpad is a window which you can call to any tag and hide it when not needed. These windows can be any application which can be run from a terminal. To call a scratchpad you will require a keybind for [ToggleScratchPad](#togglescratchpad).
