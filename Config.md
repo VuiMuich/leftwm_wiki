@@ -17,6 +17,7 @@
 - [Autostart](#autostart)
 - [Modkey](#modkey)
 - [Mousekey](#mousekey)
+- [Disable Tile Dragging](#disable-tile-dragging)
 - [Tag Behaviour](#tag-behaviour)
 - [Focus Behaviour](#focus-behaviour)
 - [Layouts](#layouts)
@@ -85,9 +86,19 @@ Example: `modkey = "Mod1"`
 The mousekey is similarly quite important. This value can be used to determine which key, when held, can assist a mouse drag in resizing or moving a floating window or making a window float or tile.
 For more info please read [this](https://stackoverflow.com/questions/19376338/xcb-keyboard-button-masks-meaning) post on x11 Mod keys.
 
+**Note: As of version 0.3.0, this can be either set to a single value like currently or as an array of modifiers.**
+
 Default: `mousekey = "Mod4"`  (windows key)
 
-Example: `mousekey = "Mod1"`  
+Example: `mousekey = "Mod1"`
+
+0.3.0 Example: `mousekey = ["Mod4", "Shift"]`
+
+# Disable Tile Dragging
+
+This allows you to make it so tiled windows can not be moved or resized with the mouse. However the mouse will still be able to interact with floating windows.
+
+Default: `disable_tile_drag = false`
 
 # Tag Behaviour
 
@@ -409,7 +420,9 @@ scratchpad = [
 
 All other commands are keybindings. you can think of key bindings as a way of telling LeftWM to do something when a key combination is pressed. There are several types of key bindings. In order for the keybind event to fire, the keys listed in the modifier section should be held down, and the key in the key section should then be pressed. [Here is a list of all keys LeftWM can use as a modifier or a key](https://github.com/leftwm/leftwm/blob/main/leftwm-core/src/utils/xkeysym_lookup.rs#L46).
 
-**Note: As it is a comon pitfall for users of AZERTY keyboards you can find the relevant keysyms fo tag related keybinds [here](https://github.com/leftwm/leftwm/wiki/Troubleshooting#azerty-mapping).**
+**Note: As it is a comon pitfall for users of AZERTY keyboards you can find the relevant keysyms for tag related keybinds [here](https://github.com/leftwm/leftwm/wiki/Troubleshooting#azerty-mapping).**
+
+**Note: As of version 0.3.0, the modifier field does not need to be specified and can be a single value or an array**
 
 Example:
 
