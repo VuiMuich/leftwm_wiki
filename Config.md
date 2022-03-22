@@ -791,6 +791,8 @@ modifier = ["modkey"]
 key = "n"
 ```
 
+**Note: This is only available in LeftWM >=0.3.0**.
+
 ## FocusNextTag
 
 Moves the focus from the current tag to the next tag in a given workspace.
