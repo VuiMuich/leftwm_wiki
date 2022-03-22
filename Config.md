@@ -53,6 +53,7 @@
   - [FocusWorkspaceNext](#focusworkspacenext)
   - [FocusWorkspacePrevious](#focusworkspaceprevious)
   - [GotoTag](#gototag)
+  - [ReturnToLastTag](#returntolasttag)
   - [FocusNextTag](#focusnexttag)
   - [FocusPreviousTag](#focusprevioustag)
   - [SwapTags](#swaptags)
@@ -776,6 +777,19 @@ key = "9"
 ```
 
 **Note: This command requires a value field to be specified**.
+
+## ReturnToLastTag
+
+Switch back to the last visited tag.
+
+Example:
+
+```toml
+[[keybind]]
+command = "ReturnToLastTag"
+modifier = ["modkey"]
+key = "n"
+```
 
 ## FocusNextTag
 
