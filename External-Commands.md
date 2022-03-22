@@ -47,3 +47,4 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | FocusWorkspacePrevious | | |
 | ToggleFullScreen | | Makes currently focused window fullscreen/non-fullscreen |
 | ToggleSticky | | Makes currently focused window sticky/non-sticky |
+| ReturnToLastTag| | Switch back to the last visited tag |
