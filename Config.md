@@ -19,6 +19,7 @@
 - [Mousekey](#mousekey)
 - [Disable Tile Dragging](#disable-tile-dragging)
 - [Tag Behaviour](#tag-behaviour)
+- [Snapping Behaviour](#snapping-behaviour)
 - [Focus Behaviour](#focus-behaviour)
 - [Layouts](#layouts)
 - [Layout Mode](#layout-mode)
@@ -108,6 +109,16 @@ Starting with LeftWM 0.2.7, the behaviour of [SwapTags](#swaptags) was changed s
 Default: `disable_current_tag_swap = false`
 
 Example: `disable_current_tag_swap = true` (returns to old behaviour)
+
+# Snapping Behaviour
+
+If snapping is enabled, floating windows are snapped (repositioned to a tile) when the window  is dragged close to a Workspace edge. This might lead to undesired behaviour when dragging windows near the edge of the screen, so it is disabled by default.
+
+Snapping can be disabled with `disable_window_snap`:
+
+Default: `disable_window_snap = true`
+
+Example: `disable_window_snap = false` (enables snapping)
 
 # Focus Behaviour
 
