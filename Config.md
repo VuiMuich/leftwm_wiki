@@ -588,7 +588,7 @@ Example:
 ```toml
 [[keybind]]
 command = "ToggleFloating"
-modifier = ["modkey", "Ctrl"]
+modifier = ["modkey", "Control"]
 key = "f"
 ```
 
