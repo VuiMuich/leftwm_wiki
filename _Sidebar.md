@@ -17,7 +17,7 @@
 [Overview](Themes)\
 [Config](Theme-Config)\
 [Customizing with 'liquid'](Customizing-Themes-with-%60liquid%60-templates)\
-[Sharing](Sharing-Themes)
+[Sharing](Sharing-Themes)\
 [Troubleshooting Themes](Diagnosing-Theme-Errors)
 ## Contributing
 [Guidelines](https://github.com/leftwm/leftwm/blob/master/CONTRIBUTING.md)\
