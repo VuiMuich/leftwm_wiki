@@ -28,5 +28,5 @@
 | ( | parenleft |
 | è | egrave |
 | _ | underscore |
-| ç | ccedillia |
+| ç | ccedilla |
 | à | agrave |
