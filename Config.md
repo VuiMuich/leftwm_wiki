@@ -122,9 +122,11 @@ Example: `disable_window_snap = false` (enables snapping)
 
 # Focus Behaviour
 
-LeftWM now has 3 focusing behaviours (Sloppy, ClickTo, and Driven) and one option (focus_new_windows), which alter the way focus is handled.
-These encompass 4 different patterns:
-1. Sloppy Focus. Focus follows the mouse, hovering over a window brings it to focus.
+LeftWM now has 3 focusing behaviours (Sloppy, ClickTo, and Driven) and 2 options (focus_new_windows, sloppy_mouse_follows_focus), which alter the way focus is handled.
+These encompass 5 different patterns:
+1. Sloppy Focus. Focus follows the mouse, hovering over a window brings it to focus. This behaviour have a variant which is toggled with the `sloppy_mouse_follows_focus` option:
+- When `true`, the cursor will follow the focus and teleport to the window that takes focus.
+- When `false`, the cursor isn't moved by LeftWM at all.
 2. Click-to-Focus. Focus follows the mouse, but only clicks change focus.
 3. Driven Focus. Focus disregards the mouse, only keyboard actions drive the focus.
 4. Event Focus. Focuses when requested by the window/new windows.
@@ -134,6 +136,7 @@ Default:
 ```toml
 focus_behaviour = "Sloppy" # Can be Sloppy, ClickTo, or Driven
 focus_new_windows = true
+sloppy_mouse_follows_focus = true # Only active with the Sloppy behaviour
 ```
 **Note: This is only available in LeftWM >=0.2.8.**
 
