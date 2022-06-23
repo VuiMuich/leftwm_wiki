@@ -517,6 +517,34 @@ modifier = ["modkey", "Shift"]
 key = "q"
 ```
 
+## MoveWindowToNextTag
+
+Takes the window that is currently focused and moves it to the next tag. If `value` is `true`, the focus will follow the window. Next tag is brought to the current workspace and focused.
+
+Example:
+
+```toml
+[[keybind]]
+command = "MoveWindowToNextTag"
+value = "true"
+modifier = ["modkey", "Shift"]
+key = "l"
+```
+
+## MoveWindowToPreviousTag
+
+Takes the window that is currently focused and moves it to the previous tag. If `value` is `true`, the focus will follow the window. Previous tag is brought to the current workspace and focused.
+
+Example:
+
+```toml
+[[keybind]]
+command = "MoveWindowToPreviousTag"
+value = "true"
+modifier = ["modkey", "Shift"]
+key = "h"
+```
+
 ## MoveToLastWorkspace
 
 Takes the window that is currently focused and moves it to the workspace that was active before the current workspace.
