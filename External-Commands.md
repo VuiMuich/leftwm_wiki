@@ -28,6 +28,8 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | SwapScreen | | swaps two screens/workspaces |
 | SendWorkspaceToTag | `workspace index` `tag_index` | both indices as integer, focuses `Tag` on `Workspace` |
 | SendWindowToTag | `tag_index` | index as integer, sends currently focused window to `Tag` |
+| MoveWindowToNextTag | `follow` | bool (default true), sends currently focused window to next tag, if `follow` then focus follows moved window |
+| MoveWindowToPreviousTag | `follow` | bool (default true), sends currently focused window to previous tag, if `follow` then focus follows moved window |
 | MoveWindowToLastWorkspace | | moves currently focused window to last used workspace |
 | MoveWindowToNextWorkspace | | moves currently focused window to next workspace |
 | MoveWindowToPreviousWorkspace | | moves currently focused window to previous workspace |
