@@ -876,7 +876,7 @@ key = "w"
 
 ## IncreaseMainWidth
 
-Increases the width of the currently focused window.
+Increases the width of the main window.
 
 Example:
 
@@ -893,7 +893,7 @@ key = "a"
 
 ## DecreaseMainWidth
 
-Decreases the width of the currently focused window.
+Decreases the width of the main window.
 
 Example:
 
