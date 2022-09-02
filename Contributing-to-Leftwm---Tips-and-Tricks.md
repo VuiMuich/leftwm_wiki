@@ -14,29 +14,34 @@ if you prefer not to switch tty you can use a tool called Xephyr. This tool allo
 
 ## Environment Functions  
 To make your life easier once your done coding, adding this function
-```
+```bash
 checkleft() {
-        if cargo fmt ; then
-          if cargo test; then
-            if cargo clippy --all-targets --all-features ; then
-                if git add -A $1 ; then
-                    if git status ; then
-                        git commit -S -m "$2"
-                    else
-                        echo "Status failed"
-                     fi
-                 else
-                     echo "Add failed"
-                fi
-            else
-                echo "Clippy failed"
-            fi
-          else
-            echo "Test failed"
-          fi
-         else
-                echo "FMT failed"
-          fi
+  if ! cargo fmt ; then
+    echo "FMT failed"
+    exit 1
+  fi
+
+  if ! cargo test; then
+    echo "Test failed"
+    exit 1
+  fi
+
+  if ! cargo clippy --all-targets --all-features ; then
+    echo "Clippy failed"
+    exit 1
+  fi
+
+  if ! git add -A $1 ; then
+    echo "Add failed"
+    exit 1
+  fi
+
+  if ! git status ; then
+    echo "Status failed"
+    exit 1
+  fi
+
+  git commit -S -m "$2"
 }
 ```
 to your ```~/.bashrc``` and running it will automatically run all the cargo checks and commit the specified files to git. It assumes you have a gpg-key, remove ```-S ``` flag from git commit if not.

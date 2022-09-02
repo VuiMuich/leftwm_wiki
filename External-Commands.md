@@ -1,10 +1,11 @@
 This is a brief overview of the available external commands and their possible arguments.
 
-Generally you pass the string of the external command to `$XDG_RUNTIME_DIR/leftwm/command.pipe`.
+You can pass the string of the external command directly to the pipe file. The file will be named "command-{display number}.pipe", where the display number can be found using ```echo $DISPLAY```.
 For example from a shell you could use:
 ```shell
-echo "SetLayout CenterMain" > $XDG_RUNTIME_DIR/leftwm/command.pipe
+echo "SetLayout CenterMain" > $XDG_RUNTIME_DIR/leftwm/command-0.pipe
 ```
+when on display 0.
 If you are on the leftwm 0.2.8 or above, external commands can be passed in using leftwm-command. Commands that contain arguments require quotes.
 For example:
 ```shell
@@ -27,6 +28,8 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | SwapScreen | | swaps two screens/workspaces |
 | SendWorkspaceToTag | `workspace index` `tag_index` | both indices as integer, focuses `Tag` on `Workspace` |
 | SendWindowToTag | `tag_index` | index as integer, sends currently focused window to `Tag` |
+| MoveWindowToNextTag | `follow` | bool (default true), sends currently focused window to next tag, if `follow` then focus follows moved window |
+| MoveWindowToPreviousTag | `follow` | bool (default true), sends currently focused window to previous tag, if `follow` then focus follows moved window |
 | MoveWindowToLastWorkspace | | moves currently focused window to last used workspace |
 | MoveWindowToNextWorkspace | | moves currently focused window to next workspace |
 | MoveWindowToPreviousWorkspace | | moves currently focused window to previous workspace |
@@ -39,8 +42,11 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 | CloseWindow | | closes currently focused window |
 | FocusWindowDown | | |
 | FocusWindowUp | | |
+| FocusWindowTop | `toggle` | Focus to top (main) window. If `toggle` is true, select the previous window if already on the top window. Only available in LeftWM >=0.2.11. |
 | FocusNextTag | | |
 | FocusPreviousTag | | |
 | FocusWorkspaceNext | | |
 | FocusWorkspacePrevious | | |
 | ToggleFullScreen | | Makes currently focused window fullscreen/non-fullscreen |
+| ToggleSticky | | Makes currently focused window sticky/non-sticky |
+| ReturnToLastTag| | Switch back to the last visited tag. Only available in LeftWM >=0.3.0 |

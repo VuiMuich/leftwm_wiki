@@ -17,13 +17,16 @@
 - [Autostart](#autostart)
 - [Modkey](#modkey)
 - [Mousekey](#mousekey)
+- [Disable Tile Dragging](#disable-tile-dragging)
 - [Tag Behaviour](#tag-behaviour)
+- [Snapping Behaviour](#snapping-behaviour)
 - [Focus Behaviour](#focus-behaviour)
 - [Layouts](#layouts)
 - [Layout Mode](#layout-mode)
 - [Tags](#tags)
 - [Max Window Width](#max-window-width)
 - [Workspaces](#workspaces)
+- [Window Rules](#window-rules)
 - [Scratchpads](#scratchpads)
 - [Keybind](#keybind)
 - [Keybind Commands](#keybind-commands)
@@ -43,6 +46,7 @@
   - [MoveToTag](#movetotag)
   - [FocusWindowUp](#focuswindowup)
   - [FocusWindowDown](#focuswindowdown)
+  - [FocusWindowTop](#focuswindowtop)
   - [NextLayout](#nextlayout)
   - [PreviousLayout](#previouslayout)
   - [SetLayout](#setlayout)
@@ -50,6 +54,7 @@
   - [FocusWorkspaceNext](#focusworkspacenext)
   - [FocusWorkspacePrevious](#focusworkspaceprevious)
   - [GotoTag](#gototag)
+  - [ReturnToLastTag](#returntolasttag)
   - [FocusNextTag](#focusnexttag)
   - [FocusPreviousTag](#focusprevioustag)
   - [SwapTags](#swaptags)
@@ -57,13 +62,14 @@
   - [DecreaseMainWidth](#decreasemainwidth)
   - [SetMarginMultiplier](#setmarginmultiplier)
   - [ToggleFullScreen](#togglefullscreen)
+  - [ToggleSticky](#togglesticky)
   - [ToggleScratchPad](#togglescratchpad)
 
 # Autostart
 
 Actually not part of `config.toml` but kind of belongs here:
 There is basically three ways to autostart applications with `LeftWM` session login (and restart them when executing `SoftReload`/`HardReload`)
-1. XDG_AUTOSTART: to use this, place a `.desktop` file in `~/.config/autostart` (more info about desktop entries can be found in the [ArchWiki](https://github.com/leftwm/leftwm/wiki/Config/_edit)
+1. XDG_AUTOSTART: to use this, place a `.desktop` file in `~/.config/autostart` (more info about desktop entries can be found in the [ArchWiki](https://wiki.archlinux.org/title/Desktop_entries))
 2. `up`/`down` scripts in [the theme](https://github.com/leftwm/leftwm/wiki/Themes#requirements-for-a-theme---up-and-down-scripts)
 3. the same scripts can be placed in `~/.config/leftwm/` in order to be theme agnostic
 *Note: there is no override rules between "theme-scripts" and "config-scripts", as they are agnostic of each other.*
@@ -82,9 +88,19 @@ Example: `modkey = "Mod1"`
 The mousekey is similarly quite important. This value can be used to determine which key, when held, can assist a mouse drag in resizing or moving a floating window or making a window float or tile.
 For more info please read [this](https://stackoverflow.com/questions/19376338/xcb-keyboard-button-masks-meaning) post on x11 Mod keys.
 
+**Note: As of version 0.3.0, this can be either set to a single value like currently or as an array of modifiers.**
+
 Default: `mousekey = "Mod4"`  (windows key)
 
-Example: `mousekey = "Mod1"`  
+Example: `mousekey = "Mod1"`
+
+0.3.0 Example: `mousekey = ["Mod4", "Shift"]`
+
+# Disable Tile Dragging
+
+This allows you to make it so tiled windows can not be moved or resized with the mouse. However the mouse will still be able to interact with floating windows.
+
+Default: `disable_tile_drag = false`
 
 # Tag Behaviour
 
@@ -94,11 +110,23 @@ Default: `disable_current_tag_swap = false`
 
 Example: `disable_current_tag_swap = true` (returns to old behaviour)
 
+# Snapping Behaviour
+
+If snapping is enabled, floating windows are snapped (repositioned to a tile) when the window  is dragged close to a Workspace edge. This might lead to undesired behaviour when dragging windows near the edge of the screen, so it is disabled by default.
+
+Snapping can be disabled with `disable_window_snap`:
+
+Default: `disable_window_snap = true`
+
+Example: `disable_window_snap = false` (enables snapping)
+
 # Focus Behaviour
 
-LeftWM now has 3 focusing behaviours (Sloppy, ClickTo, and Driven) and one option (focus_new_windows), which alter the way focus is handled.
-These encompass 4 different patterns:
-1. Sloppy Focus. Focus follows the mouse, hovering over a window brings it to focus.
+LeftWM now has 3 focusing behaviours (Sloppy, ClickTo, and Driven) and 2 options (focus_new_windows, sloppy_mouse_follows_focus), which alter the way focus is handled.
+These encompass 5 different patterns:
+1. Sloppy Focus. Focus follows the mouse, hovering over a window brings it to focus. This behaviour have a variant which is toggled with the `sloppy_mouse_follows_focus` option:
+- When `true`, the cursor will follow the focus and teleport to the window that takes focus.
+- When `false`, the cursor isn't moved by LeftWM at all.
 2. Click-to-Focus. Focus follows the mouse, but only clicks change focus.
 3. Driven Focus. Focus disregards the mouse, only keyboard actions drive the focus.
 4. Event Focus. Focuses when requested by the window/new windows.
@@ -108,6 +136,7 @@ Default:
 ```toml
 focus_behaviour = "Sloppy" # Can be Sloppy, ClickTo, or Driven
 focus_new_windows = true
+sloppy_mouse_follows_focus = true # Only active with the Sloppy behaviour
 ```
 **Note: This is only available in LeftWM >=0.2.8.**
 
@@ -116,7 +145,7 @@ focus_new_windows = true
 Leftwm supports an ever-growing amount layouts, which define the way that 
 windows are tiled in the workspace.
 
-Default (all layouts, check [this enum](https://github.com/leftwm/leftwm/blob/master/leftwm-core/src/layouts/mod.rs#L21)
+Default (all layouts, check [this enum](https://github.com/leftwm/leftwm/blob/main/leftwm-core/src/layouts/mod.rs#L21)
 for the latest list):
 
 ```toml
@@ -293,7 +322,18 @@ workspaces = [
     { y = 0, x = 1720, height = 1440, width = 1720, id = 1 },
 ]
 ```
+After specifying id in `config.toml`, you can refer to it by wsid in `theme.toml` like below:
+```toml
+[[gutter]]
+side = "Left" # set a 20 pixel margin on the left side of workspace id 0
+value = 20
+wsid = 0
 
+[[gutter]]
+side = "Right"
+value = 20
+wsid = 0
+```
 Note that leftwm will consider a configuration that assigns only some, but not all, workspaces an ID to be invalid. The following would result in logging a warning message and falling back to the default config:
 
 ```toml
@@ -319,6 +359,42 @@ workspaces = [
 ]
 ```
 
+# Window Rules
+
+Window rules allow to define how a window matching some properties should be spawned. As of now, a window can be matched by two properties:
+
+* `window_class`, corresponding to the property `WM_CLASS` of a window in a X server. 
+* `window_title`, corresponding to the `_NET_WM_NAME` or the `WM_NAME` of a window. Both will be inspected if a window rule is defined by `window_title`. This takes precedence over `window_class`, since it is more specific.
+
+The properties of a window can be inspected by launching [xprop](https://www.x.org/releases/X11R7.5/doc/man/man1/xprop.1.html) on a terminal and clicking the desired window.
+
+Example:
+
+```toml
+window_rules = [
+  # windows whose WM_CLASS is "Navigator" will be spawn on tag 2 (by position, 1-indexed)
+  {window_class = "Navigator", spawn_on_tag = 2},
+  # windows whose window title is "Pentablet" will be spawned floating on tag 9
+  {window_title = "Pentablet", spawn_on_tag = 9, spawn_floating = true},
+]
+```
+
+### When should we match the different properties?
+
+Having the flexibility to match by class or title [was found to be important for the user experience](https://github.com/leftwm/leftwm/issues/427#issuecomment-998587861). This decision also follows the previous art in other tiling window managers like [xmonad](https://wiki.haskell.org/Xmonad/General_xmonad.hs_config_tips#ManageHook_examples) or [dwm](https://dwm.suckless.org/patches/switchtotag/). 
+
+While `WM_CLASS` is more robust (the title of a window may be changed during the lifetime of the window), windows with the same class may vary in the desired behavior. For instance, a GUI program like [krita](https://krita.org/) may spawn floating children windows (same `WM_CLASS`, different `WM_TITLE`). Setting a rule for krita like
+
+```toml
+window_rules = [ 
+  {window_class = "krita", spawn_on_tag = 3},
+]
+```
+
+would spawn also the children windows on tag 3 even if the parent krita window was moved to a different tag after launch (which is quite annoying!). In this case, the user most likely wants to use the `window_title` for the parent window or define other rules for the different child windows (`window_title` rules take precedence over `window_class` rules).
+
+**Note: This is only available in LeftWM >=0.3.0. It is currently only available through aur/leftwm-git or building from source.**
+
 # Scratchpads
 
 A scratchpad is a window which you can call to any tag and hide it when not needed. These windows can be any application which can be run from a terminal. To call a scratchpad you will require a keybind for [ToggleScratchPad](#togglescratchpad).
@@ -337,6 +413,16 @@ y = 390
 height = 300
 width = 200
 ```
+Or with float values:
+```toml
+[[scratchpad]]
+name = "Alacritty"
+value = "WINIT_X11_SCALE_FACTOR=1 alacritty -o font.size=14"
+x = 0.46
+y = 0.20
+height = 0.80
+width =  0.54
+```
 
 Or with short syntax:
 ```toml
@@ -344,13 +430,14 @@ scratchpad = [
     { name = "Alacritty", value = "alacritty", x = 860, y = 390, height = 300, width = 200 },
 ]
 ```
-**Note: This is only available in LeftWM >=0.2.8.**
 
 # Keybind
 
-All other commands are keybindings. you can think of key bindings as a way of telling LeftWM to do something when a key combination is pressed. There are several types of key bindings. In order for the keybind event to fire, the keys listed in the modifier section should be held down, and the key in the key section should then be pressed. [Here is a list of all keys LeftWM can use as a modifier or a key](https://github.com/leftwm/leftwm/blob/master/leftwm-core/src/utils/xkeysym_lookup.rs#L46).
+All other commands are keybindings. you can think of key bindings as a way of telling LeftWM to do something when a key combination is pressed. There are several types of key bindings. In order for the keybind event to fire, the keys listed in the modifier section should be held down, and the key in the key section should then be pressed. [Here is a list of all keys LeftWM can use as a modifier or a key](https://github.com/leftwm/leftwm/blob/main/leftwm-core/src/utils/xkeysym_lookup.rs#L46).
 
-**Note: As it is a comon pitfall for users of AZERTY keyboards you can find the relevant keysyms fo tag related keybinds [here](https://github.com/leftwm/leftwm/wiki/Troubleshooting#azerty-mapping).**
+**Note: As it is a comon pitfall for users of AZERTY keyboards you can find the relevant keysyms for tag related keybinds [here](https://github.com/leftwm/leftwm/wiki/Troubleshooting#azerty-mapping).**
+
+**Note: As of version 0.3.0, the modifier field does not need to be specified and can be a single value or an array**
 
 Example:
 
@@ -430,6 +517,34 @@ modifier = ["modkey", "Shift"]
 key = "q"
 ```
 
+## MoveWindowToNextTag
+
+Takes the window that is currently focused and moves it to the next tag. If `value` is `true`, the focus will follow the window. Next tag is brought to the current workspace and focused.
+
+Example:
+
+```toml
+[[keybind]]
+command = "MoveWindowToNextTag"
+value = "true"
+modifier = ["modkey", "Shift"]
+key = "l"
+```
+
+## MoveWindowToPreviousTag
+
+Takes the window that is currently focused and moves it to the previous tag. If `value` is `true`, the focus will follow the window. Previous tag is brought to the current workspace and focused.
+
+Example:
+
+```toml
+[[keybind]]
+command = "MoveWindowToPreviousTag"
+value = "true"
+modifier = ["modkey", "Shift"]
+key = "h"
+```
+
 ## MoveToLastWorkspace
 
 Takes the window that is currently focused and moves it to the workspace that was active before the current workspace.
@@ -503,8 +618,8 @@ Example:
 
 ```toml
 [[keybind]]
-command = "TileToFloating"
-modifier = ["modkey", "Ctrl"]
+command = "ToggleFloating"
+modifier = ["modkey", "Control"]
 key = "f"
 ```
 
@@ -588,6 +703,24 @@ command = "FocusWindowDown"
 modifier = ["modkey"]
 key = "Down"
 ```
+
+## FocusWindowTop
+
+Focuses the top (main) window on the current workspace. If `value` is `true`, it will select the previous window if the top window is already focused
+
+Default:
+
+```toml
+[[keybind]]
+command = "FocusWindowTop"
+modifier = ["modkey"]
+value = false
+key = "m"
+```
+
+**NOTE: This is only available in LeftWM >=0.2.11.**
+
+**NOTE: If a value is not provided, it will default to `false`**
 
 ## NextLayout
 
@@ -687,6 +820,21 @@ key = "9"
 
 **Note: This command requires a value field to be specified**.
 
+## ReturnToLastTag
+
+Switch back to the last visited tag.
+
+Example:
+
+```toml
+[[keybind]]
+command = "ReturnToLastTag"
+modifier = ["modkey"]
+key = "n"
+```
+
+**Note: This is only available in LeftWM >=0.3.0**.
+
 ## FocusNextTag
 
 Moves the focus from the current tag to the next tag in a given workspace.
@@ -728,7 +876,7 @@ key = "w"
 
 ## IncreaseMainWidth
 
-Increases the width of the currently focused window.
+Increases the width of the main window.
 
 Example:
 
@@ -745,7 +893,7 @@ key = "a"
 
 ## DecreaseMainWidth
 
-Decreases the width of the currently focused window.
+Decreases the width of the main window.
 
 Example:
 
@@ -791,7 +939,19 @@ command = "ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
 ```
-**Note: This is only available in LeftWM >=0.2.8.**
+
+## ToggleSticky
+
+Toggles the currently focused window between sticky and not sticky.
+
+Example:
+
+```toml
+[[keybind]]
+command = "ToggleSticky"
+modifier = ["modkey"]
+key = "v"
+```
 
 ## ToggleScratchPad
 
@@ -807,4 +967,3 @@ modifier = ["modkey"]
 key = "p"
 ```
 **Note: This command requires a value field to be specified**.
-**Note: This is only available in LeftWM >=0.2.8.**
