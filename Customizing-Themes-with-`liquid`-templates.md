@@ -187,7 +187,7 @@ The formatting is quite simple and well described in `man lemonbar`.
 
 ## `sizes.liquid`
 This also a very common template in leftwm themes has basically the purpose of generating support for multiple side-by-side workspaces on a single screen.
-It generates the size properties for bars based on the workspace properties configured in `config.toml` (usually workspace width and starting coordinates) and explicitly set values (usually bar height).
+It generates the size properties for bars based on the workspace properties configured in `config.ron` (usually workspace width and starting coordinates) and explicitly set values (usually bar height).
 
 ---
 For further information about `liquid` syntax you can find a comprehensive documentation on https://github.com/Shopify/liquid/wiki/Liquid-for-Designers.
