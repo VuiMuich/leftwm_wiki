@@ -18,7 +18,7 @@ leftwm-command "SendWindowToTag 2" "SendWorkspaceToTag 0 2"
 |Command | Arguments (if needed) | Notes |
 |-|-|-|
 | Reload | | Reloads leftwm |
-| LoadTheme | `Path-to/theme.toml` | usually used in themes `up` script to load a theme |
+| LoadTheme | `Path-to/theme.ron` | usually used in themes `up` script to load a theme, for legacy themes use `theme.toml` and make sure you run a `leftwm` version that supports `toml` config format |
 | UnloadTheme | | usually used in themes `down` script to unload the theme |
 | SetLayout | `LayoutName` | |
 | NextLayout | | |
