@@ -266,7 +266,7 @@ width = 2560
 max_window_width = 1200
 ```
 
-**Note: This is only available in LeftWM >=0.2.9. It is currently only available through aur/leftwm-git or building from source.**
+**Note: This is only available in LeftWM >=0.2.9.**
 
 # Workspaces
 
@@ -393,7 +393,7 @@ window_rules = [
 
 would spawn also the children windows on tag 3 even if the parent krita window was moved to a different tag after launch (which is quite annoying!). In this case, the user most likely wants to use the `window_title` for the parent window or define other rules for the different child windows (`window_title` rules take precedence over `window_class` rules).
 
-**Note: This is only available in LeftWM >=0.3.0. It is currently only available through aur/leftwm-git or building from source.**
+**Note: This is only available in LeftWM >=0.3.0.**
 
 # Scratchpads
 
