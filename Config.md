@@ -2,6 +2,7 @@
 
  _All code snippets in this section refer to the file `~/.config/leftwm/config.ron`_  
  All entries require a modifier, even if blank: `modifier: []`
+ For migrating you old config to `ron` please follow this [guide](https://github.com/leftwm/leftwm/wiki/Migrate-Toml-To-Ron).
 
 _Note: for config in `toml` pleas refer to the [legacy documentation](Config-toml.md)_
 ***Important: You will need to reload (recommended SoftReload, as it tries to preserve the WM state as far as possible) in order to apply changes to `config.ron`.***
@@ -134,7 +135,7 @@ These encompass 5 different patterns:
 Default:
 
 ```rust
-focus_behaviour: Sloppy # Can be Sloppy, ClickTo, or Driven
+focus_behaviour: Sloppy // Can be Sloppy, ClickTo, or Driven
 focus_new_windows: true
 ```
 
